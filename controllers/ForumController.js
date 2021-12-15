@@ -9,7 +9,7 @@ const ForumModel = require('../models/forumModel')
 const createForum = asyncHandler(async(req, res) => {
     const forum = await ForumModel({
         title: "Sample Name",
-        user: req.user._id,
+        user: req.user.name,
         description: "sample description",
         category: "Sample category",
         image: "Sample URL"

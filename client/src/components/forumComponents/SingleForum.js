@@ -2,7 +2,7 @@ import React ,{useState, useEffect }from 'react'
 import { useParams } from "react-router-dom";
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import { useDispatch, useSelector } from "react-redux";
-import {Card,Container,Image,Row,Col,Form,Button,InputGroup,FormControl} from "react-bootstrap";
+import {Card,Container,Image,Row,Col,Form,Button,InputGroup,FormControl,Alert} from "react-bootstrap";
 import {listDetailsForum,createForumComment} from '../../actions/forumActions'
 import { FORUM_CREATE_REVIEW_RESET } from '../../constants/forumConstants'
 import '../../App.css';
@@ -36,7 +36,7 @@ function SingleForum({match}) {
 
     useEffect(() => {
       if(successReview){
-        alert('Review Submitted !!')
+        alert('Comment Submitted !!')
       setComment('')
       dispatch({type:FORUM_CREATE_REVIEW_RESET})
       }
@@ -79,25 +79,29 @@ function SingleForum({match}) {
     </Button>
     </CopyToClipboard>
   <div>
-  <Form >
-                      <Form.Group controlId='comment'>
-                        <Form.Label>Comment</Form.Label>
-                        <Form.Control
-                          as='textarea'
-                          row='3'
-                          value={comment}
-                          onChange={(e) => setComment(e.target.value)}
-                        ></Form.Control>
-                      </Form.Group>
-                      <br />
-                      
-    
-    
-  <Button m={4} variant="primary"  onClick={submitHandler}>
-    Submit
-  </Button>
-  <br/>
+    <br />
+    {!userInfo ?(<Alert variant="info">Please <a href="/login">Login</a> to post a comment</Alert>):(
+       <Form >
+       <Form.Group controlId='comment'>
+         <Form.Label>Comment</Form.Label>
+         <Form.Control
+           as='textarea'
+           row='3'
+           value={comment}
+           onChange={(e) => setComment(e.target.value)}
+         ></Form.Control>
+       </Form.Group>
+       <br />
+       
+
+
+<Button m={4} variant="primary"  onClick={submitHandler}>
+Submit
+</Button>
+<br/>
 </Form>
+    )}
+ 
 <br/>
   {/* {forum.reviews.sort((a,b) => a.timeM - b.timeM)} */}
     {forum.reviews.map((review)=>(
@@ -120,3 +124,4 @@ function SingleForum({match}) {
 }
 
 export default SingleForum
+
