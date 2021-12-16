@@ -14,6 +14,7 @@ const createForum = asyncHandler(async(req, res) => {
         category: "Sample category",
         image: "Sample URL"
     })
+    console.log(req.user.name)
     const createdForum = await forum.save()
     res.status(201).json(createdForum)
 })

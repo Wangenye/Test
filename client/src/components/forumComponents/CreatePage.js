@@ -87,7 +87,7 @@ function CreatePage({match,history}) {
               <Form.Label>Image URL</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='Enter category'
+                placeholder='Enter Image URL'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
