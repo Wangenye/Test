@@ -45,7 +45,7 @@ function SingleForum({match}) {
         
       }, [dispatch,successReview])
 
-      const shareURL = `http:localhost:3001/forum/${id}`
+      const shareURL = `http://allmusicforum.herokuapp.com//forum/${id}`
       console.log(shareURL)
 
       const submitHandler = (e) => {
